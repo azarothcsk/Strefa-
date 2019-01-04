@@ -1,0 +1,47 @@
+public static void main(String[] args) {
+	// write your code here
+        List<String> users = new ArrayList<>();
+
+        users.add("michalos");
+
+        users.add("john");
+
+        users.add("anna");
+
+        // sout
+
+        System.out.println(users.get(1));
+
+        // sout
+        for ( String user: users){
+            System.out.println(user);
+        }
+
+
+
+    }
+
+
+Dane wklej RAW
+public static void main(String[] args) {
+	// write your code here
+        List<String> users = new ArrayList<>();
+
+        users.add("michalos");
+
+        users.add("john");
+
+        users.add("anna");
+
+        // sout
+
+        System.out.println(users.get(1));
+
+        // sout
+        for ( String user: users){
+            System.out.println(user);
+        }
+
+
+
+    }
