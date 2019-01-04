@@ -1,0 +1,67 @@
+public class CreateConnectionWithDatabase {
+ 
+    public CreateConnectionWithDatabase(){
+ 
+    }
+ 
+    public Connection createConnection(String user, String password, String database, String server) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
+ 
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build(); //politica de connexion
+ 
+        StrictMode.setThreadPolicy(policy);
+ 
+        Connection connection = null;
+ 
+        String connectionUrl = null;
+ 
+        Class.forName ("com.mysql.jdbc.Driver").newInstance ();
+ 
+        connectionUrl = "jdbc:mysql://"+server+"/"+database;
+ 
+        connection = DriverManager.getConnection (connectionUrl, user, password);
+ 
+        return connection;
+ 
+    }
+ 
+ 
+ 
+}
+   
+createConnectionWithDatabase = new CreateConnectionWithDatabase();
+        connection = createConnectionWithDatabase.createConnection("jxxxu@lxxza-sxxxer","12xxxa", "gym_cachi","xxxxx-server.xxxx.xxxxx.azure.com:3306");
+
+
+RAW Paste Data
+public class CreateConnectionWithDatabase {
+
+    public CreateConnectionWithDatabase(){
+
+    }
+
+    public Connection createConnection(String user, String password, String database, String server) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build(); //politica de connexion
+
+        StrictMode.setThreadPolicy(policy);
+
+        Connection connection = null;
+
+        String connectionUrl = null;
+
+        Class.forName ("com.mysql.jdbc.Driver").newInstance ();
+
+        connectionUrl = "jdbc:mysql://"+server+"/"+database;
+
+        connection = DriverManager.getConnection (connectionUrl, user, password);
+
+        return connection;
+
+    }
+
+
+
+}
+	
+createConnectionWithDatabase = new CreateConnectionWithDatabase();
+        connection = createConnectionWithDatabase.createConnection("jxxxu@lxxza-sxxxer","12xxxa", "gym_cachi","xxxxx-server.xxxx.xxxxx.azure.com:3306");

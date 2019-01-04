@@ -1,0 +1,31 @@
+ {
+    "title": "Music MIX at the park",
+    "description": "Lorem ipsum....",
+    "duration": 2,
+    "date": "2020-12-01",
+    "time": "10:00",
+    "datetime": "2020-12-01 10:00",
+    "location": "ChIJH3frsc5ZzpQRoU10aab2BOk",
+    "location_lat": 123,
+    "location_lng": 456,
+    "expected_costs": 20,
+    "hosted_by": 1,
+    "native_language": "pt",
+    "foreign_language": "en"
+
+RAW Paste Data
+ {
+	"title": "Music MIX at the park",
+	"description": "Lorem ipsum....",
+	"duration": 2,
+	"date": "2020-12-01",
+	"time": "10:00",
+	"datetime": "2020-12-01 10:00",
+	"location": "ChIJH3frsc5ZzpQRoU10aab2BOk",
+	"location_lat": 123,
+	"location_lng": 456,
+	"expected_costs": 20,
+	"hosted_by": 1,
+	"native_language": "pt",
+	"foreign_language": "en"
+ }

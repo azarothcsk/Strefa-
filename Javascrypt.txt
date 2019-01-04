@@ -1,0 +1,234 @@
+
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <form>
+             <input type="text" id="imie" placeholder="Wpisz imiê"><label style="color:red;" id="lab01"></label><br/>
+            <input type="text" id="nazwisko" placeholder="Wpisz nazwisko"><label style="color:red;" id="lab02"></label><br/>
+            <input type="text" id="mail" placeholder="Wpisz mail"><label style="color:red;" id="lab1"></label><br/>
+            <input type="text" id="tel" placeholder="Wpisz telefon"><label style="color:red;" id="lab2"></label><br/>
+            <input type="text" id="pesel" placeholder="Wpisz pesel"><label style="color:red;" id="lab3"></label><br/>
+            <input type="text" id="haslo" placeholder="Wpisz haslo"><label style="color:red;" id="lab4"></label><br/>
+            <input type="text" id="miasto" placeholder="Wpisz miasto"><label style="color:red;" id="lab5"></label><br/>
+            <input type="text" id="ulica" placeholder="Wpisz ulicê"><label style="color:red;" id="lab6"></label><br/>
+            <input type="text" id="dom" placeholder="Wpisz nr domu"><label style="color:red;" id="lab7"></label><br/>
+            <input type="text" id="kod" placeholder="Wpisz kod pocztowy"><label style="color:red;" id="lab8"></label><br/>
+            <input type="button" value="SprawdŸ" onclick="sprawdzaj()">
+        </form>
+        <div id="div1"></div>
+        <div id="div2"></div>
+         
+        <script>
+        function sprawdzaj()
+        {
+            var div1=document.getElementById("div1");
+            var imie=document.getElementById("imie").value;
+            var nazw=document.getElementById("nazwisko").value;
+            var email=document.getElementById("mail").value;
+            var tel=document.getElementById("tel").value;
+            var pesel=document.getElementById("pesel").value;
+            var haslo=document.getElementById("haslo").value;
+            var miasto=document.getElementById("miasto").value;
+            var ulica=document.getElementById("ulica").value;
+            var dom=document.getElementById("dom").value;
+            var kod=document.getElementById("kod").value;
+            var div2=document.getElementById("div2");
+            var lab01=document.getElementById("lab01");
+            var lab02=document.getElementById("lab02");
+            var lab1=document.getElementById("lab1");
+            var lab2=document.getElementById("lab2");
+            var lab3=document.getElementById("lab3");
+            var lab4=document.getElementById("lab4");
+            var lab5=document.getElementById("lab5");
+            var lab6=document.getElementById("lab6");
+            var lab7=document.getElementById("lab7");
+            var lab8=document.getElementById("lab8");
+            if(imie=="")
+                {
+                    lab01.innerHTML="Pole jest puste";
+                    lab01.style="color:red";
+                }
+             
+            //Nie dzia³a
+            else if(imie.search('[0-9]')>1)
+                {
+                    lab01.innerHTML="Imie zawiera niedozwolony znak";
+                    lab01.style="color:red";
+                }
+            //
+             
+            else
+                {
+                    lab01.innerHTML="Imie poprawne";
+                    lab01.style="color:green";
+                }
+             
+            if(nazw=="")
+                {
+                    lab02.innerHTML="Pole jest puste";
+                    lab02.style="color:red";
+                }
+             
+            //Nie dzia³a
+            else if(nazw.search('[0-9]')>1)
+                {
+                    lab02.innerHTML="Nazwisko zawiera niedozwolony znak";
+                    lab02.style="color:red";
+                }
+            //
+             
+            else
+                {
+                    lab02.innerHTML="Nazwisko poprawne";
+                    lab02.style="color:green";
+                }
+             
+            //Nie dzia³a
+            if((imie!="")&&(imie.search('[0-9]')==0)&&(nazw!="")&&(nazw.search('[0-9]')==0))
+                {
+                    div1.innerHTML=("Witaj "+imie+" "+nazw);
+                }
+            //
+             
+            var mail_wz=/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+            if(email=="")
+                {
+                    lab1.innerHTML="Pole jest puste";
+                    lab1.style="color:red";
+                }
+             
+            //Nie dzia³a
+            else if(mail_wz.test(email))
+                {
+                    lab1.innerHTML=("Mail niepoprawny");
+                    lab1.style="color:red";
+                }
+            else
+                {
+                    lab1.innerHTML=("Mail poprawny");
+                    lab1.style="color:green";
+                }
+            //
+             
+            if(tel=="")
+                {
+                    lab2.innerHTML="Pole jest puste";
+                    lab2.style="color:red";
+                }
+            else if((tel>=100000000)&&(tel<=999999999))
+                {
+                    lab2.innerHTML=("Telefon poprawny");
+                    lab2.style="color:red;";
+                     
+                }
+            if(pesel=="")
+                {
+                    lab3.innerHTML="Pole jest puste";
+                    lab3.style="color:red;";
+                }
+            else if((pesel>=10000000000)&&(pesel<=99999999999))
+                {
+                    lab3.innerHTML="PESEL poprawny";
+                    lab3.style="color:green;";
+                }
+            else
+                {
+                    lab3.innerHTML=("PESEL niepoprawny");
+                    lab3.style="color:red;";
+                }
+             
+            if(haslo=="")
+                {
+                    lab4.innerHTML="Pole jest puste";
+                    lab4.style="color:red;";
+                }
+             
+            //Nie dzia³a
+            else if((haslo.length>=8)&&(haslo.search("[0-9]")>0))
+                {
+                    lab4.innerHTML=("Has³o silne");
+                    lab4.style="color:green";
+                }
+            else
+                {
+                    lab4.innerHTML=("Has³o za s³abe!");
+                    lab4.style="color:red";
+                }
+            //
+             
+            if(miasto=="")
+                {
+                    lab5.innerHTML="Pole jest puste";
+                    lab5.style="color:red;";
+                }
+            else if((miasto.length>=3)&&(miasto.search("[0-9]")<1))
+                {
+                    lab5.innerHTML=("Miasto poprawne");
+                    lab5.style="color:green;";
+                }
+            else
+                {
+                    lab5.innerHTML=("Miasto niepoprawne");
+                    lab5.style="color:red;";
+                }
+             
+            if(ulica=="")
+                {
+                    lab6.innerHTML="Pole jest puste";
+                    lab6.style="color:red;";
+                }
+            else if((ulica.length>=3)&&(ulica.search("[0-9]")<1))
+                {
+                    lab6.innerHTML=("Ulica poprawna");
+                    lab6.style="color:green;";
+                }
+            else
+                {
+                    lab6.innerHTML=("Ulica niepoprawna");
+                    lab6.style="color:red;";
+                }
+             
+            if(dom=="")
+                {
+                    lab7.innerHTML="Pole jest puste";
+                    lab7.style="color:red;";
+                }
+            else if(dom.length>=1)
+                {
+                    lab7.innerHTML=("NR domu poprawny");
+                    lab7.style="color:green;";
+                }
+            else
+                {
+                    lab7.innerHTML=("NR domu niepoprawny");
+                    lab7.style="color:red;";
+                }
+             
+            var kod_wz="/^\d\d-\d\d\d$/";
+            if(kod=="")
+                {
+                    lab8.innerHTML="Pole jest puste";
+                    lab8.style="color:red;";
+                }
+             
+            //Nie dzia³a
+            else if(!kod_wz.test(kod))
+                {
+                    lab8.innerHTML=("Kod pocztowy niepoprawny");
+                    lab8.style="color:red";
+                }
+            else
+                {
+                    lab8.innerHTML=("Kod pocztowy poprawny");
+                    lab8.style="color:green;";
+                }
+            //
+        }
+        </script>
+    </body>
+</html>
+
